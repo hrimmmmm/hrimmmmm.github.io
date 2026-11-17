@@ -210,3 +210,124 @@ footer {
   }
 
 }
+
+/* ARTWORK NAVIGATION */
+
+.artwork-nav[hidden] {
+  display: none;
+}
+
+.artwork-nav {
+  position: fixed;
+  z-index: 10;
+  top: 148px;
+  left: 32px;
+  width: 148px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.artwork-nav-toggle {
+  display: none;
+}
+
+.artwork-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: calc(100dvh - 180px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.artwork-nav-list a {
+  display: block;
+  border-left: 1px solid transparent;
+  padding: 6px 0 6px 12px;
+  color: #737373;
+  overflow-wrap: anywhere;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.artwork-nav-list a:hover,
+.artwork-nav-list a[aria-current="location"] {
+  color: #111;
+  opacity: 1;
+}
+
+.artwork-nav-list a[aria-current="location"] {
+  border-left-color: currentColor;
+}
+
+.artwork-nav a:focus-visible,
+.artwork-nav-toggle:focus-visible {
+  outline: 1px solid #777;
+  outline-offset: 3px;
+}
+
+@media (min-width: 1101px) {
+  .has-artwork-nav main {
+    margin-left: 176px;
+    width: calc(100% - 176px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .artwork-nav {
+    top: auto;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    left: 20px;
+    width: auto;
+    max-width: calc(100vw - 40px);
+    border: 1px solid #e5e5e5;
+    background: #fff;
+  }
+
+  .artwork-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 44px;
+    width: 100%;
+    border: 0;
+    padding: 10px 14px;
+    background: transparent;
+    color: #111;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .artwork-nav-list {
+    display: none;
+    max-height: min(60dvh, 420px);
+    padding: 8px 14px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .artwork-nav.is-open {
+    width: 240px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .artwork-nav.is-open .artwork-nav-list {
+    display: block;
+  }
+
+  .artwork-nav-list a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .artwork-nav-list a {
+    transition: none;
+  }
+}
+
